@@ -20,13 +20,17 @@
 2 - As a focus group member I want to make selections as if I were a customer, without bias.
 
 3 - As a focus group member I want to help the market research team collect accurate data about the app and the products
-4 - As a focus group member I want to test the busmall app and provide constructive feed back to the development team about the functionality, look and feel of the app. 
+4 - As a focus group member I want to test the busmall app and provide constructive feed back to the development team about the functionality, look and feel of the app.
 5 - As a focus group member
 
 ### Developer
 
-1 - As a Developer
-2 - As a Developer
-3 - As a Developer
-4 - As a Developer
-5 - As a Developer
+1 - As a Developer I want to build a functional, intuitive and user friendly app that will provide the client with compiled data about the desirability of their products and the behavior of consumers.
+
+2 - As a Developer I want to write dry code that is logical, bug free and functional
+
+3 - As a Developer  I want to create a user experience that is engaging, enjoyable and intuitive.
+
+4 - As a Developer I want to style the app in a way that is appealing and directs human behavior to support the clients intent
+
+5 - As a student I want to use what I have learned on this project to develop actual skills and solidify vague concepts. 
