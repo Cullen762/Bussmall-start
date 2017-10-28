@@ -18,10 +18,48 @@
       Compile results, which imgs had the most clicks and the percentage of each img clicked when it is presented
 
       Array = IMG
+      Array = User input which IMG is selected
+
 
       A for loop to run through the IMG array using .length
 
-      
 
       FN to display images
-      FN to
+        event listener for input
+        event handler  for user input
+       .push user response into array.
+
+       how to randomly select three imgs?
+       short loops three index's?
+       nested loops to move across the array?
+        two arrays?
+
+#### HTML
+divs for display
+headers
+divs for tally?
+select buttons or link to animations?
+
+CSS make it funky
+
+
+##Phases
+ Make Plan
+### one
+
+ JS:
+Start with random number generator, give pics a value and log that into the console to test code.
+store results in var
+use constructor function
+array for a constructor?
+
+put results in a table?
+
+
+
+
+
+ arrays:
+      - imgs
+
+      - user input
