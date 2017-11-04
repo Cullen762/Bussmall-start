@@ -69,7 +69,7 @@ function mindTheClick(event) {
     showCount();
   }
   if (event.target.id === 'puka') {
-    return alert('Please click on an image');
+    return alert('Bring me Solo and the wookie!...I mean..please click on an Image');
   }
   Item.total += 1;
   for(var i = 0; i < Item.names.length; i++) {
