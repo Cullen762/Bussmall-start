@@ -14,7 +14,7 @@ function Selection(name, filepath){
   this.totalClicksPerImage = 0;
 }
 
-//new Selection(IMG2/busmall imgs/wine-glass.jpg);
+//instances of constructor
 new Selection('water can', 'IMG2/busmall imgs/water-can.jpg');
 new Selection('unicorn','IMG2/busmall imgs/unicorn.jpg');
 new Selection('sweep','IMG2/busmall imgs/sweep.png');
@@ -33,19 +33,32 @@ new Selection('bathroom','IMG2/busmall imgs/bathroom.jpg');
 new Selection('banana','IMG2/busmall imgs/banana.jpg');
 new Selection('bag','IMG2/busmall imgs/bag.jpg');
 console.log('two');
+
+//decalre element to be appended to DOM
+// add event listener
 var imageEl = document.getElementById('busmall-pic');
 imageEl.addEventListener('click',randomSelection);
 console.log('imageEl');
 
+//this chooses random image
 function randomSelection (){
-  var randomImage = Math.floor(Math.random() * imagesArray.length);
-  imageEl.src = imagesArray[randomImage].filepath;
+  for( var i = 0 ; i < imagesArray.length;i++){
+    //for loop runs through images array
+    var randomImage = Math.floor(Math.random() * imagesArray.length);
+    //Math. stores random image from array into the var randomImage
+    return randomImage;
+    imageEl = imagesArray.filepath;
+    console.log('loop');
+  }
+
   // how do I push the random images into the imagesArray?
   //"imgEl.src = Goat.allGoats[randomIndex].filepath;" what  is this?
   //img element ? is this what prints it to the page?
   //does this randomly select an image and put it in the imagesArray?
-  console.log('function');
+  console.log('function randomSelection');
 }
+
+imageEl.appendChild[randomImage];
 randomSelection();
 
 //append to the DOM
@@ -61,22 +74,6 @@ randomSelection();
 //apend to DOM
 
 //***demo code for reference*** I learn better by reverse engineering09jh
-//'use strict';
-//array to store the objects
-//Goat.allGoats = [];
-//make an object
-// function Goat(name, filepath){
-//   this.name = name;
-//   this.filepath = filepath;
-//   Goat.allGoats.push(this);
-// }
-// //make new Goat instances
-// new Goat('Cruisin goat', 'img/cruisin-goat.jpg');
-// new Goat('Kissing goats', 'img/kissing-goat.jpg');
-// new Goat('Sassy goat', 'img/sassy-goat.jpg');
-// new Goat('Smiling goat', 'img/smiling-goat.jpg');
-// new Goat('Sweater goat', 'img/sweater-goat.jpg');
-//
 // //listener, something to be clicked...events!
 // var imgEl = document.getElementById('goat-pic');
 //
