@@ -1,87 +1,92 @@
-'user strict';
-var imagesArray = [];// array to store images
-var index1;//images index of images to be pushed randomly into imagesArray for selection.
-var index2;
-var index3;
-var totalClicks; // total clicks per image should this be stored in a different var?
-console.log('one');
+'use strict';
+
+//names of products array, all items array, getters  and total clicks
+Item.names = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can',
+  'wine-glass'];
+Item.all = [];
+Item.puka = document.getElementById('puka');
+Item.viewed = [];
+Item.pics = [document.getElementById('left'), document.getElementById('center'), document.getElementById('right')];
+Item.count = document.getElementById('count');
+Item.total = 0;
+console.log('pukas');
 
 //constructor function
-function Selection(name, filepath){
+function Item(name){
   this.name = name;
-  this.filepath = filepath;
-  imagesArray.push(this);
-  this.totalClicksPerImage = 0;
+  this.path = 'img/' + name + '.jpg';
+  this.votes = 0;
+  this.views = 0;
+  Item.all.push(this);
 }
-
-//instances of constructor
-new Selection('water can', 'IMG2/busmall imgs/water-can.jpg');
-new Selection('unicorn','IMG2/busmall imgs/unicorn.jpg');
-new Selection('sweep','IMG2/busmall imgs/sweep.png');
-new Selection('shark','IMG2/busmall imgs/shark.jpg');
-new Selection('pizza scissors','IMG2/busmall imgs/scissors.jpg');
-new Selection('pet sweep','IMG2/busmall imgs/pet-sweep.jpg');
-new Selection('pen set','IMG2/busmall imgs/pen.jpg');
-new Selection('dragon meat','IMG2/busmall imgs/dragon.jpg');
-new Selection('duck','IMG2/busmall imgs/dog-duck.jpg');
-new Selection('cthulhu','IMG2/busmall imgs/cthulhu.jpg');
-new Selection('chair','IMG2/busmall imgs/chair.jpg');
-new Selection('keto bubblegum','IMG2/busmall imgs/bubblegum.jpg');
-new Selection('breakfast','IMG2/busmall imgs/breakfast.jpg');
-new Selection('boots','IMG2/busmall imgs/boots.jpg');
-new Selection('bathroom','IMG2/busmall imgs/bathroom.jpg');
-new Selection('banana','IMG2/busmall imgs/banana.jpg');
-new Selection('bag','IMG2/busmall imgs/bag.jpg');
-console.log('two');
-
-//decalre element to be appended to DOM
-// add event listener
-var imageEl = document.getElementById('busmall-pic');
-imageEl.addEventListener('click',randomSelection);
-console.log('imageEl');
-
-//this chooses random image
-function randomSelection (){
-  for( var i = 0 ; i < imagesArray.length;i++){
-    //for loop runs through images array
-    var randomImage = Math.floor(Math.random() * imagesArray.length);
-    //Math. stores random image from array into the var randomImage
-    return randomImage;
-    imageEl = imagesArray.filepath;
-    console.log('loop');
+//for loop creates instances
+for(var i = 0; i < Item.names.length; i++) {
+  new Item(Item.names[i]);
+}
+//randomize pics
+function random() {
+  return Math.floor(Math.random() * Item.names.length);
+}
+function presentPics() {
+  var displayNow = [];
+  //left image
+  displayNow[0] = random();
+  while (Item.viewed.indexOf(displayNow[0]) !== -1) {
+    console.error('We have seen this before, re-do!');
+    displayNow[0] = random();
+  }
+  //center image
+displayNow[1] = makeRandom();
+  while(displayNow[0] === displayNow[1] || Item.viewed.indexOf(displayNow[1]) !== -1) {
+    console.error('another repeat!');
+    displayNow[1] = random();
+  }
+  //right image
+  displayNow[2] = makeRandom();
+  while(displayNow[0] === displayNow[2] || Item.viewed.indexOf(displayNow[2]) !== -1) {
+    console.error('Duplicate,encore!');
+    displayNow[2] = random();
   }
 
-  // how do I push the random images into the imagesArray?
-  //"imgEl.src = Goat.allGoats[randomIndex].filepath;" what  is this?
-  //img element ? is this what prints it to the page?
-  //does this randomly select an image and put it in the imagesArray?
-  console.log('function randomSelection');
+  //prepare for DOM-enation!!
+  for(var i = 0; i < 3; i++) {
+    Item.pics[i].src = Item.all[displayNow[i]].path;
+    Item.pics[i].id = Item.all[displayNow[i]].name;
+    Item.all[displayNow[i]].views += 1;
+    Item.viewed[i] = displayNow[i];
+    console.log('DOM-enated');
+  }
 }
 
-imageEl.appendChild[randomImage];
-randomSelection();
+  //"handle click events", console.Log = concatenates the number of clicks stored in the constructor funciton Item.total and the string 'total clicks'
+  //begins conditional logic, to control the number of clicks, shutting down the event listener when the number exceeds 24
 
-//append to the DOM
-//begin with funciton to generate random value
-//assign that value to represent imgs
-// build constructor to push into array the results
-// compile and present data of clicks into a readable graph or page?
+  function mindTheClick(event) {
+    console.log(Item.total, 'total clicks');
+    if(Item.total > 24) {
+      Item.container.removeEventListener('click', handleClick);
+      showCount();
+    }
+    if (event.target.id === 'puka') {
+      return alert('Please click on an image');
+    }
+    Item.total += 1;
+    for(var i = 0; i < Item.names.length; i++) {
+      if(event.target.id === Item.all[i].name) {
+        Item.all[i].votes += 1;
+        console.log(event.target.id + ' has ' + Item.all[i].votes + ' votes ' + Item.all[i].views + ' views');
+      }
+    }
+   presentPics();
 
-//pukas
-//constructor
-//instances
-//methods with looks for imgs
-//apend to DOM
-
-//***demo code for reference*** I learn better by reverse engineering09jh
-// //listener, something to be clicked...events!
-// var imgEl = document.getElementById('goat-pic');
-//
-// imgEl.addEventListener('click', randomGoat);
-// //randomly display one of the pictures
-//
-// function randomGoat() {
-//   var randomIndex = Math.floor(Math.random() * Goat.allGoats.length);
-//   imgEl.src = Goat.allGoats[randomIndex].filepath;
-// }
-// randomGoat();
+   //show tally using list in DOM
+   function showCount() {
+     for(var i = 0; i < Item.all.length; i++) {
+       var liEl = document.createElement('li');
+       liEl.textContent = Item.all[i].name + ' has ' + Item.all[i].votes + ' votes in ' + Item.all[i].views + ' views';
+       Item.tally.appendChild(liEl);
+     }
+   }
+   //event listener
+ Item.puka.addEventListener('click', mindTheClick);
+presentPics();
