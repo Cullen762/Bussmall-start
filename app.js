@@ -96,3 +96,32 @@ function mindTheClick(event) {
 Item.puka.addEventListener('click', mindTheClick);
 presentPics();
 //unexpected end of input?
+
+//Demo code for reference
+//this holds the value for the votes of each product image
+var focusGroupData = [];
+//this is the name for each product
+var labelColors = ['red', 'blue', 'yellow', 'green', 'purple', 'orange','black','magenta','pink','brown','olive','cyan'];
+
+var chart = document.getElementById('chart').getContext('2d');
+
+var busMallChart = new Chart(chart, {
+  type: 'bar',
+  data: {
+    labels: labelColors,
+    datasets: [{
+      label: '# of Votes',
+      data: data,
+      backgroundColor: labelColors
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
