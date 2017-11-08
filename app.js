@@ -66,7 +66,8 @@ function mindTheClick(event) {
   console.log(Item.total, 'total clicks');
   if(Item.total > 24) {
     Item.puka.removeEventListener('click',mindTheClick);
-    showCount();
+
+    runChart();
   }
   if (event.target.id === 'puka') {
     return alert('Bring me Solo and the wookie!...I mean..please click on an Image');
@@ -96,3 +97,41 @@ function mindTheClick(event) {
 Item.puka.addEventListener('click', mindTheClick);
 presentPics();
 //unexpected end of input?
+
+//Demo code for reference
+//this holds the value for the votes of each product image
+function runChart(){
+  var focusGroupData = [];
+  var  focusGroupDataNames = [];
+
+ for(var i = 0; i < Item.all.length; i++){
+  focusGroupData.push(Item.all[i].votes);
+    focusGroupDataNames.push(Item.all[i].name);
+}
+//this is the name for each product
+var labelColors = ['red', 'blue', 'yellow', 'green', 'purple', 'orange','black','magenta','pink','brown','#f3a314','cyan','magenta','pink','brown','#bf88d7','cyan','#bf88d7','#207068','#1b75bb','#212a37','#171717','#e3ff00'];
+
+var ctx = document.getElementById('canvas').getContext('2d');
+
+  var busMallChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: focusGroupDataNames,
+      datasets: [{
+        label: '# of Votes',
+        data:focusGroupData,
+        backgroundColor: labelColors
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  })
+
+};
